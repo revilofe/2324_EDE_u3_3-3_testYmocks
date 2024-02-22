@@ -117,13 +117,12 @@ class CurrencyRateRepositoryImpl: CurrencyRateRepository {
             val response = rateProviderAPI.rate(baseCurrency,targetCurrency ).awaitResponse()
             if (response.isSuccessful) {
                 val rateDTO = response.body() ?: ExchangeRateDTO()
-                rateDTO.toModel()
+                rateDTO.toModel() // Success
             } else {
-                ExchangeRateDTO().toModel()
+                ExchangeRateDTO().toModel() // Error
             }
         } catch (exception: Exception) {
-            val e = exception
-            ExchangeRateDTO().toModel()
+            ExchangeRateDTO().toModel() // Error
         }
 
     }
