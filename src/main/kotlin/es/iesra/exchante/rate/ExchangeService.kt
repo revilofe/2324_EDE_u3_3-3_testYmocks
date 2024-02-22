@@ -11,10 +11,9 @@ class ExchangeService(var currencyRateRepository: CurrencyRateRepository = Curre
 
         runBlocking {
             val rate = currencyRateRepository.rate(money.currency,currencyTarget)
+            if (rate.conversionRate != Rate.RATE_ERROR)
+                moneyResult = money.multiplyBy(rate.conversionRate)
         }
-
-        if (rate.conversionRate != Rate.RATE_ERROR)
-            moneyResult = money.multiplyBy(rate.conversionRate)
 
         return moneyResult
     }
