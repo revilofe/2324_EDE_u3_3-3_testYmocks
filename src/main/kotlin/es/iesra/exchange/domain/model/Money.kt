@@ -1,4 +1,4 @@
-package es.iesra.model
+package es.iesra.exchange.domain.model
 
 class Money(val cantidad: Double = 0.0, val currency: String = "")
 {
